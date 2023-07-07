@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:shehop_flowers/features/Drawer/presintation/Page/DrawerWidget.dart';
 
 import '../app_theme.dart';
+import '../util/ScreenUtil.dart';
 
 class myCustemAppber extends StatelessWidget {
   String name;
@@ -10,12 +11,14 @@ class myCustemAppber extends StatelessWidget {
    myCustemAppber({Key? key,required this.scaffolKey,required this.name}) : super(key: key);
 
 
+  ScreenUtil screenUtil =ScreenUtil();
 
   @override
   Widget build(BuildContext context) {
+    screenUtil.init(context);
     return   Stack(children: [
         Container(
-          height: 100,
+          height: screenUtil.screenHeight *.12,
           width: double.infinity,
           decoration: BoxDecoration(
               color: AppTheme.primaryColor,
@@ -33,13 +36,7 @@ class myCustemAppber extends StatelessWidget {
                 onTap: () {
                   print("mdaklnffffffffffffffffffffffff");
                   scaffolKey.currentState!.openDrawer();
-                  Drawer(
-                    child: Container(
-                      width: 100,
-                      height: 200,
-                      color: Colors.red,
-                    ),
-                  );
+
                 },
                 child: SvgPicture.asset("assets/images/menu.svg",
                     color: Colors.white,

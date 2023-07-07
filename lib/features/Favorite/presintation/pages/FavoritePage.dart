@@ -7,7 +7,7 @@ import '../../../../core/app_theme.dart';
 import '../../../../core/widgets/CustomPageRoute.dart';
 import '../../../../core/widgets/myCustemAppber.dart';
 import '../../../Drawer/presintation/Page/DrawerWidget.dart';
-import '../../../ProdectDetails/Pages/DetailsPage.dart';
+import '../../../ProdectDetails/presintation/Pages/DetailsPage.dart';
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({Key? key}) : super(key: key);
@@ -81,7 +81,7 @@ class _FavoritePageState extends State<FavoritePage> {
                                         Navigator.push(
                                             context,
                                             CustomPageRoute(  child:
-                                            DetailsPage(imagePath:  "${snapshot.data!.docs[i]["imgurl"]}", name:  "${snapshot.data!.docs[i]["name"]}",)));
+                                            DetailsPage(imagePath:  "${snapshot.data!.docs[i]["imgurl"]}", name:  "${snapshot.data!.docs[i]["name"]}",nameCategres: '',)));
                                       },
                                       child: Stack(
                                         children: [

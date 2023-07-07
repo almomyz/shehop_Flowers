@@ -4,14 +4,15 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../../../core/app_theme.dart';
 import '../../../../core/widgets/CustomPageRoute.dart';
-import '../../../ProdectDetails/Pages/DetailsPage.dart';
+
+import '../../../ProdectDetails/presintation/Pages/DetailsPage.dart';
 import '../../../Prodects/presintation/pages/ProdectPage.dart';
 
 class ViewCategoriesWideget extends StatefulWidget {
 
-  final nameCategories;
-
-   ViewCategoriesWideget({Key? key,required this.nameCategories}) : super(key: key);
+  final userref;
+final nameCategories;
+   ViewCategoriesWideget({Key? key,required this.userref,required this.nameCategories}) : super(key: key);
 
   @override
   State<ViewCategoriesWideget> createState() => _ViewCategoriesWidegetState();
@@ -20,13 +21,13 @@ class ViewCategoriesWideget extends StatefulWidget {
 class _ViewCategoriesWidegetState extends State<ViewCategoriesWideget> {
   @override
 
-  late Query<Map<String, dynamic>> userref;
+
   Widget build(BuildContext context) {
     return Container(
       height: 160,
       width: double.infinity,
       child: StreamBuilder<QuerySnapshot>(
-          stream:userref.snapshots() ,
+          stream: widget.userref,
         builder: (context, snapshot) {
           if(snapshot.hasData) {
             return ListView.builder(
@@ -47,7 +48,16 @@ class _ViewCategoriesWidegetState extends State<ViewCategoriesWideget> {
                                   child: ProdectPage(
                                     nameCategories: widget.nameCategories.toString(),
                                   )));
-                        },child: Center(child: Text("عرض الكل ",style: AppTheme.textTheme.headline2))),
+                        },child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+
+                          children: [
+                            Text("عرض الكل ",style: TextStyle(fontFamily: AppTheme.fontFamily,color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold)),
+                            Icon(Icons.arrow_back_ios_new_rounded,color: Colors.white,),
+
+                          ],
+                        )),
                         width: 159,
                         decoration: BoxDecoration(color: AppTheme.primarySwatch.shade700,borderRadius: BorderRadius.all(Radius.circular(12)),
                       )
@@ -62,7 +72,7 @@ class _ViewCategoriesWidegetState extends State<ViewCategoriesWideget> {
                       Navigator.push(
                           context,
                           CustomPageRoute(  child:
-                          DetailsPage(imagePath:  "${snapshot.data!.docs[index]["imgurl"]}", name:  "${snapshot.data!.docs[index]["name"]}",)));
+                          DetailsPage(imagePath:  "${snapshot.data!.docs[index]["imgurl"]}", name:  "${snapshot.data!.docs[index]["name"]}",nameCategres: widget.nameCategories,)));
                         },
                       child: Column(
                         children: [
@@ -122,13 +132,5 @@ class _ViewCategoriesWidegetState extends State<ViewCategoriesWideget> {
       ),
     );
   }
-  @override
-  void initState() {
-    // TODO: implement initState
 
-      userref = FirebaseFirestore.instance
-          .collection("${widget.nameCategories}")
-          .orderBy("entery_date", descending: true);
-
-  }
 }

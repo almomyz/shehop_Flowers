@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/app_theme.dart';
+import '../../../../core/util/ScreenUtil.dart';
 
 class HomeCategoriesWidget extends StatelessWidget {
   String name, image;
@@ -14,9 +15,11 @@ class HomeCategoriesWidget extends StatelessWidget {
     required this.onTap,
     required this.isSelected,
   });
+  ScreenUtil screenUtil =ScreenUtil();
 
   @override
   Widget build(BuildContext context) {
+    screenUtil.init(context);
     return isSelected
         ? GestureDetector(
       onTap: (){
@@ -25,12 +28,13 @@ class HomeCategoriesWidget extends StatelessWidget {
           child:  Column(
             children: [
               Container(
+
                 decoration: BoxDecoration(color: AppTheme.primaryColor,borderRadius: BorderRadius.circular(15),),
                 child: Card(
                   shape:  BeveledRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                   child: Container(
-                      width: 80,
-                      height: 80,
+                      width: screenUtil.screenWidth * .18,
+                      height: screenUtil.screenHeight *.09,
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(12),
                           child: Image.asset(
@@ -54,26 +58,23 @@ class HomeCategoriesWidget extends StatelessWidget {
       onTap: (){
         onTap();
       },
-          child: Padding(
-            padding:  EdgeInsets.only(right: 20.0, left: 20.0),
-            child: Column(
-              children: [
-                Container(
+          child: Column(
+            children: [
+              Container(
 
-                    width: 71,
-                    height: 71,
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.asset(
-                          image,
-                          fit: BoxFit.cover,
-                        ))),
-                Text(
-                  name,
-                  style: AppTheme.textTheme.headline5,
-                )
-              ],
-            ),
+                  width: screenUtil.screenWidth *.2,
+                  height: screenUtil.screenHeight *.1,
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        image,
+                        fit: BoxFit.cover,
+                      ))),
+              Text(
+                name,
+                style: AppTheme.textTheme.headline5,
+              )
+            ],
           ),
         );
   }

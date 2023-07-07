@@ -3,17 +3,25 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shehop_flowers/core/app_theme.dart';
 import 'package:shehop_flowers/features/Categories/presintation/pages/Categories_Page.dart';
 import 'package:shehop_flowers/features/Prodects/presintation/pages/ProdectPage.dart';
 
-import 'features/ProdectDetails/Pages/DetailsPage.dart';
-import 'features/ProdectDetails/Widgets/LoginController.dart';
+import 'features/Categories/Controller/CategoriesController.dart';
+
+import 'features/ProdectDetails/Controller/ProdectDetailsController.dart';
+import 'features/onboarding/introduction_screen.dart';
 import 'firebase_options.dart';
+bool show = true;
+final loginController =     Get.put(ProdectDetailsController());
+final CategriesController = Get.put(CategoriesController());
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  final prefs = await SharedPreferences.getInstance();
+  show = prefs.getBool('ON_BOARDING') ?? true ;
   runApp( MyApp());
 }
 
@@ -27,7 +35,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
-  final loginController = Get.put(LoginController());
 
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -45,7 +52,9 @@ class _MyAppState extends State<MyApp> {
         // is not restarted.
         primarySwatch: AppTheme.primarySwatch,
       ),
-      home: Categories_Page()
+      home:  show
+           ? IntroScreen()
+           :  Categories_Page(),
     );
   }
   @override

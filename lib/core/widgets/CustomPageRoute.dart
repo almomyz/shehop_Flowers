@@ -5,7 +5,7 @@ class CustomPageRoute extends PageRouteBuilder{
     required this.child,
 
 }):super(
-    transitionDuration: Duration(seconds: 1),
+    transitionDuration: const Duration(seconds: 1),
     pageBuilder: (context ,animation,secodaryAnimation)=>child ,
   );
 

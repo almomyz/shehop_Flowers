@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shehop_flowers/features/Drawer/presintation/Page/DrawerWidget.dart';
-import 'package:shehop_flowers/features/ProdectDetails/Pages/DetailsPage.dart';
-import 'package:shehop_flowers/features/ProdectDetails/Widgets/OtpInpouts.dart';
+
+
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../core/app_theme.dart';
 import '../../../../core/widgets/CustomPageRoute.dart';
 import '../../../../core/widgets/myCustemAppber.dart';
+import '../../../ProdectDetails/presintation/Pages/DetailsPage.dart';
 
 class ProdectPage extends StatefulWidget {
   String? nameCategories;
@@ -87,7 +88,7 @@ enabledBorder:  UnderlineInputBorder(
                                        Navigator.push(
                                            context,
                                            CustomPageRoute(  child:
-                                           DetailsPage(imagePath:  "${snapshot.data!.docs[i]["imgurl"]}", name:  "${snapshot.data!.docs[i]["name"]}",)));
+                                           DetailsPage(imagePath:  "${snapshot.data!.docs[i]["imgurl"]}", name:  "${snapshot.data!.docs[i]["name"]}",nameCategres: widget.nameCategories,)));
                                      },
                                       child: Column(
 

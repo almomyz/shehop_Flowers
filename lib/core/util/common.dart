@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../features/ProdectDetails/Widgets/OtpInpouts.dart';
+import '../../features/ProdectDetails/presintation/Widgets/OtpInpouts.dart';
 import '../app_theme.dart';
 TextEditingController phone=TextEditingController();
 
@@ -76,56 +76,49 @@ phoneAuth(context,bool isloding){
                 children: [
                   Text("ادخل رقم الهاتف",
                       style: AppTheme.textTheme.bodyText1),
-                  Container(
+                  TextFormField(
 
-                      decoration: BoxDecoration(
-
-                          color: Colors.grey.shade200,
-                          borderRadius:
-                          BorderRadius.circular(10)),
-                      margin: EdgeInsets.only(
-                          top: 70, left: 20, right: 30,),
-                      child: TextFormField(
-                        maxLength: 9,
-                         controller: phone,
-                        keyboardType: TextInputType.phone,
-                        textDirection: TextDirection.ltr,
-                        decoration: InputDecoration(
-
-                          prefix: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 20),
-                            child: Text(
-                              textAlign: TextAlign.start,
-                              '(+967)',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          hintTextDirection:
-                          TextDirection.ltr,
-                          hintText: "رقم الهاتف ",
-
-                          enabledBorder:
-                          UnderlineInputBorder(
-
-                            borderSide: BorderSide(
-                                color: Colors.transparent,),
-                          ),
-                          prefixIcon: Icon(
-                              Icons.phone_android,
-                              size: 30,
-                              color: AppTheme.primaryColor),
-                          focusedBorder:
-                          UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Colors.white),
+                    maxLength: 9,
+                     controller: phone,
+                    keyboardType: TextInputType.phone,
+                    textDirection: TextDirection.ltr,
+                    decoration: InputDecoration(
+                          fillColor: Colors.grey.shade200,
+                      filled: true,
+                      prefix: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 20),
+                        child: Text(
+                          textAlign: TextAlign.start,
+                          '(+967)',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        cursorColor: AppTheme.primaryColor,
-                      )),
+                      ),
+                      hintTextDirection:
+                      TextDirection.ltr,
+                      hintText: "رقم الهاتف ",
+
+                      enabledBorder:
+                      UnderlineInputBorder(
+
+                        borderSide: BorderSide(
+                            color: Colors.transparent,),
+                      ),
+                      prefixIcon: Icon(
+                          Icons.phone_android,
+                          size: 30,
+                          color: AppTheme.primaryColor),
+                      focusedBorder:
+                      UnderlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Colors.white),
+                      ),
+                    ),
+                    cursorColor: AppTheme.primaryColor,
+                  ),
                   Container(
                     padding: EdgeInsets.all(20),
                     child: SizedBox(

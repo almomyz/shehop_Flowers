@@ -4,6 +4,7 @@ import 'package:shehop_flowers/features/Favorite/presintation/pages/FavoritePage
 import 'package:shehop_flowers/features/PointsOfSale/Pages/PointsOfSale.dart';
 
 import '../../../../core/app_theme.dart';
+import '../../../../core/util/ScreenUtil.dart';
 import '../../../../core/widgets/CustomPageRoute.dart';
 import '../../../Orders/Pages/OrdersPage.dart';
 import '../../../Prodects/presintation/pages/ProdectPage.dart';
@@ -13,14 +14,17 @@ import '../Widget/DrawerItem.dart';
 class DrawerWidget extends StatelessWidget {
   var scaffolKey;
    DrawerWidget({Key? key,required this.scaffolKey}) : super(key: key);
+  ScreenUtil screenUtil =ScreenUtil();
 
   @override
   Widget build(BuildContext context) {
+    screenUtil.init(context);
     return  SafeArea(
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: Container(
-          padding: EdgeInsets.only(right: 5,bottom: 20,),
+
+
           height:double.infinity,
           decoration: BoxDecoration(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),bottomRight: Radius.circular(20) )),
           child: Drawer(
@@ -31,7 +35,7 @@ class DrawerWidget extends StatelessWidget {
               Stack(
                 children:[
                   Container(
-                    height: 50,
+                    height: screenUtil.screenHeight *.06,
                     width: double.infinity,
                     decoration: BoxDecoration(
                         color: AppTheme.primaryColor,
@@ -61,16 +65,18 @@ class DrawerWidget extends StatelessWidget {
                   ),
                   Padding(
                     padding:  EdgeInsets.only(top: 60,right: 130),
-                    child: Text("شلهوب للتحف والهدايا",style: AppTheme.textTheme.bodyText1,),
+                    child: Text("شلهوب للتحف والهدايا",style: TextStyle(fontFamily: AppTheme.fontFamily,fontSize: 17,color: AppTheme.secondaryColor),),
                   ),
                   Padding(
                     padding:  EdgeInsets.only(top: 90,right: 125),
-                    child: Text("Shalhop@gmail.com",style: TextStyle(color: AppTheme.secondaryColor,fontSize: 18)),
+                    child: Text("Shalhop@gmail.com",style: TextStyle(color: AppTheme.secondaryColor,fontSize: 17,fontWeight: FontWeight.bold
+                    )),
                   ),
+
+
                   Padding(
                     padding:  EdgeInsets.only(right: 300),
                     child: IconButton(onPressed: (){
-                      print("ksamdma;lsmd;lasmdl;masl;md;lasml;dm;almd;lam;");
                       scaffolKey.currentState!.closeDrawer();
                     }, icon: Icon(Icons.clear,color: Colors.white,)),
                   )
@@ -115,23 +121,13 @@ class DrawerWidget extends StatelessWidget {
                         child: OredrsPage()));
               }),
               DrawerItem(icon: Icon(Icons.info_outline_sharp),text: "من نحن ",ontap: (){
-                Navigator.push(
-                    context,
-                    CustomPageRoute(
-                        child: ProdectPage(
-                          nameCategories: "NEWS",
-                        )));
+
               }),
               DrawerItem(icon: Icon(Icons.share),text: "مشاركة التطبيق",ontap: (){
-                Navigator.push(
-                    context,
-                    CustomPageRoute(
-                        child: ProdectPage(
-                          nameCategories: "NEWS",
-                        )));
-              }),
-              Divider(color: AppTheme.primaryColor,)
 
+              }),
+              Divider(color: AppTheme.primaryColor,),
+                Center(child: Text('Developed by Almomyz ',style: TextStyle(fontFamily: AppTheme.fontFamily,color: Colors.black),))
 
             ]),
           ),

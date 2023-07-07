@@ -38,15 +38,15 @@ class AppTheme {
   static Color scaffoldBackgroundColor2 = Color(0xffF6F9FF);
 
 
-  static String fontFamily = 'Expo_Arabic_Book.ttf';
+  static String fontFamily = 'Expo_Arabic_Book';
 
   static TextTheme textTheme = TextTheme(
     headline1: TextStyle(fontSize: 32.0, fontFamily: fontFamily, color: secondaryColor,fontWeight: FontWeight.bold),
-    headline2: TextStyle(fontSize: 30.0, fontFamily: fontFamily,color: Colors.white ),
-    headline3: TextStyle(fontSize: 18.0, fontFamily: fontFamily,color: Colors.black ),
+    headline2: TextStyle(fontSize: 30.0, fontFamily: fontFamily,color: Colors.white ,fontWeight: FontWeight.bold),
+    headline3: TextStyle(fontSize: 18.0, fontFamily: fontFamily,color: Colors.black ,fontWeight: FontWeight.bold),
     headline4: TextStyle(fontWeight: FontWeight.bold,fontSize: 25.0, fontFamily: fontFamily, color: secondaryColor),
-    headline5: TextStyle(fontSize: 15.0, fontFamily: fontFamily, color: Colors.black),
-    headline6: TextStyle(fontSize: 24.0, fontFamily: fontFamily, color: secondaryColor),
+    headline5: TextStyle(fontSize: 15.0, fontFamily: fontFamily, color: Colors.black,fontWeight: FontWeight.bold),
+    headline6: TextStyle(fontSize: 24.0, fontFamily: fontFamily, color: secondaryColor,fontWeight: FontWeight.bold),
     bodyText1: TextStyle(fontSize: 20.0, fontFamily: fontFamily, color: secondaryColor,fontWeight: FontWeight.bold),
     bodyText2: TextStyle(fontSize: 15.0, fontFamily: fontFamily, color:secondaryColor.withOpacity(.6)),  );
 }
