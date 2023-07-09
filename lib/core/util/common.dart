@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shehop_flowers/core/util/ScreenUtil.dart';
 
 import '../../features/ProdectDetails/presintation/Widgets/OtpInpouts.dart';
 import '../app_theme.dart';
+ScreenUtil screenUtil=ScreenUtil();
 TextEditingController phone=TextEditingController();
 
 OtpAuth(context){
@@ -58,86 +60,94 @@ OtpAuth(context){
 }
 phoneAuth(context,bool isloding){
   showModalBottomSheet(
+      isScrollControlled: true,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30),
               topRight: Radius.circular(30))),
       barrierColor: AppTheme.primarySwatch.shade700,
-      isScrollControlled: true,
       context: context,
-      builder: (context) {
-        return SingleChildScrollView(
-          child: Container(
-            child: Column(
-                crossAxisAlignment:
-                CrossAxisAlignment.center,
-                mainAxisAlignment:
-                MainAxisAlignment.spaceAround,
-                children: [
-                  Text("ادخل رقم الهاتف",
-                      style: AppTheme.textTheme.bodyText1),
-                  TextFormField(
 
-                    maxLength: 9,
-                     controller: phone,
-                    keyboardType: TextInputType.phone,
-                    textDirection: TextDirection.ltr,
-                    decoration: InputDecoration(
-                          fillColor: Colors.grey.shade200,
-                      filled: true,
-                      prefix: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 20),
-                        child: Text(
-                          textAlign: TextAlign.start,
-                          '(+967)',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+      builder: (context) {
+        screenUtil.init(context);
+        return SingleChildScrollView(
+          child: Padding(
+
+            padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: Container(
+              height: screenUtil.screenHeight *.4,
+              width: double.infinity,
+              child: Column(
+                  crossAxisAlignment:
+                  CrossAxisAlignment.center,
+                  mainAxisAlignment:
+                  MainAxisAlignment.spaceAround,
+                  children: [
+                    Text("ادخل رقم الهاتف",
+                        style: AppTheme.textTheme.bodyText1),
+                    TextFormField(
+
+                      maxLength: 9,
+                       controller: phone,
+                      keyboardType: TextInputType.phone,
+                      textDirection: TextDirection.ltr,
+                      decoration: InputDecoration(
+                            fillColor: Colors.grey.shade200,
+                        filled: true,
+                        prefix: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20),
+                          child: Text(
+                            textAlign: TextAlign.start,
+                            '(+967)',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                      hintTextDirection:
-                      TextDirection.ltr,
-                      hintText: "رقم الهاتف ",
+                        hintTextDirection:
+                        TextDirection.ltr,
+                        hintText: "رقم الهاتف ",
 
-                      enabledBorder:
-                      UnderlineInputBorder(
+                        enabledBorder:
+                        UnderlineInputBorder(
 
-                        borderSide: BorderSide(
-                            color: Colors.transparent,),
+                          borderSide: BorderSide(
+                              color: Colors.transparent,),
+                        ),
+                        prefixIcon: Icon(
+                            Icons.phone_android,
+                            size: 30,
+                            color: AppTheme.primaryColor),
+                        focusedBorder:
+                        UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Colors.white),
+                        ),
                       ),
-                      prefixIcon: Icon(
-                          Icons.phone_android,
-                          size: 30,
-                          color: AppTheme.primaryColor),
-                      focusedBorder:
-                      UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Colors.white),
-                      ),
+                      cursorColor: AppTheme.primaryColor,
                     ),
-                    cursorColor: AppTheme.primaryColor,
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(20),
-                    child: SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                            style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(AppTheme.primaryColor),padding:MaterialStateProperty.all(EdgeInsets.all(10)) ,shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(7)),
-                              ),
-                            ),),
-                            onPressed: () {
+                    Container(
+                      padding: EdgeInsets.all(20),
+                      child: SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                              style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(AppTheme.primaryColor),padding:MaterialStateProperty.all(EdgeInsets.all(10)) ,shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(7)),
+                                ),
+                              ),),
+                              onPressed: () {
 
-                            },
-                            child:isloding? Center(child: CircularProgressIndicator(color: Colors.white,strokeWidth: 5,)):Text("تاكيد"))),
-                  )
-                ]),
-            height: 305,
+                              },
+                              child:isloding? Center(child: CircularProgressIndicator(color: Colors.white,strokeWidth: 5,)):Text("تاكيد"))),
+                    )
+                  ]),
+            ),
           ),
         );
       });

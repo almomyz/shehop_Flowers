@@ -27,7 +27,15 @@ class _DetailsPageState extends State<DetailsPage> {
   ScreenUtil screenUtil =ScreenUtil();
    String? imageUrl;
    String? name;
-  final loginController =     Get.put(ProdectDetailsController());
+  Icon SuffixIcon = Icon(
+    Icons.cancel,
+    color: Colors.red,
+    size: 32,
+  );
+   bool isloding=false;
+  final _formKey = GlobalKey<FormState>();
+  final prodectDetailsController =     Get.put(ProdectDetailsController());
+  //final LoginController =     Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
     screenUtil.init(context);
@@ -106,6 +114,7 @@ class _DetailsPageState extends State<DetailsPage> {
 
               ],
             ),
+            Divider(color: AppTheme.primaryColor,),
             Padding(
               padding:  EdgeInsets.only(left: screenUtil.screenWidth *.6),
               child: Text(
@@ -211,7 +220,129 @@ class _DetailsPageState extends State<DetailsPage> {
                             ),
                           )),
                       onPressed: () {
-                        phoneAuth(context,false);
+
+                          showModalBottomSheet(
+                              isScrollControlled: true,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(30),
+                                      topRight: Radius.circular(30))),
+                              barrierColor: AppTheme.primarySwatch.shade700,
+                              context: context,
+
+                              builder: (context) {
+                                screenUtil.init(context);
+                                return SingleChildScrollView(
+                                  child: Padding(
+
+                                    padding: EdgeInsets.only(
+                                        bottom: MediaQuery.of(context).viewInsets.bottom),
+                                    child: Container(
+                                      height: screenUtil.screenHeight *.4,
+                                      width: double.infinity,
+                                      child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Text("ادخل رقم الهاتف",
+                                                style: AppTheme.textTheme.bodyText1),
+                                            Form(
+                                              key: _formKey,
+
+                                              child: TextFormField(
+
+                                                onChanged: (value) {
+                                                  if (value.length == 9) {
+                                                    setState(() {
+                                                      SuffixIcon = Icon(Icons.check_circle,
+                                                          color: Colors.green, size: 32);
+                                                    });
+                                                  } else {
+                                                    setState(() {
+                                                      SuffixIcon = Icon(Icons.cancel,
+                                                          color: Colors.red, size: 32);
+                                                    });
+                                                  }
+                                                },
+                                                validator: (value) {
+                                                  if (value.toString().isEmpty ||
+                                                      value.toString().length <= 8)
+                                                    return "يرجئ التحقق من الرقم المدخل";
+                                                  return null;
+                                                },
+                                                decoration: InputDecoration(
+                                                  filled: true,
+                                                    fillColor: Colors.grey.shade200,
+                                                    hintText: "7********",
+                                                    labelText: "رقم الهاتف",
+
+                                                    enabledBorder: OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color: Colors.black12),
+                                                        borderRadius:
+                                                        BorderRadius.circular(10)),
+                                                    focusedBorder: OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color: Colors.black12),
+                                                        borderRadius:
+                                                        BorderRadius.circular(10)),
+                                                    prefix: Padding(
+                                                      padding: EdgeInsets.symmetric(
+                                                          horizontal: 8),
+                                                      child: Text(
+                                                        '(+967)',
+                                                        style: TextStyle(
+                                                          fontSize: 18,
+                                                          fontWeight: FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    suffixIcon: SuffixIcon),
+                                                maxLength: 9,
+                                                controller: phone,
+                                                keyboardType: TextInputType.phone,
+                                                textDirection: TextDirection.ltr,
+
+                                                cursorColor: AppTheme.primaryColor,
+                                              ),
+                                            ),
+                                            Container(
+                                              padding: EdgeInsets.all(20),
+                                              child: SizedBox(
+                                                  width: double.infinity,
+                                                  child: ElevatedButton(
+                                                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(AppTheme.primaryColor),padding:MaterialStateProperty.all(EdgeInsets.all(10)) ,shape: MaterialStateProperty.all<
+                                                          RoundedRectangleBorder>(
+                                                        RoundedRectangleBorder(
+                                                          borderRadius:
+                                                          BorderRadius.all(Radius.circular(7)),
+                                                        ),
+                                                      ),),
+                                                      onPressed: () {
+                                                        // setState(() => isLoding = true);
+                                                        // controller.verifyPhone(
+                                                        //     phone.text, context);
+                                                        // await Future.delayed(
+                                                        //     const Duration(seconds: 15));
+                                                        //
+                                                        // setState(() => isLoding = false);
+                                                        // SharedPreferences share =
+                                                        //     await SharedPreferences
+                                                        //     .getInstance();
+                                                        // share.setString("phone", phone.text);
+                                                      },
+                                                      child:isloding? Center(child: CircularProgressIndicator(color: Colors.white,strokeWidth: 5,)):Text("تاكيد"))),
+                                            )
+                                          ]),
+                                    ),
+                                  ),
+                                );
+                              });
+
+
+
                       },
                       child: Text("اطلب الان",
                           style: AppTheme.textTheme.bodyText2),

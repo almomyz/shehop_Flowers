@@ -7,7 +7,7 @@ import '../util/ScreenUtil.dart';
 
 class myCustemAppber extends StatelessWidget {
   String name;
-  var scaffolKey;
+  final scaffolKey;
    myCustemAppber({Key? key,required this.scaffolKey,required this.name}) : super(key: key);
 
 
@@ -35,7 +35,7 @@ class myCustemAppber extends StatelessWidget {
               InkWell(
                 onTap: () {
                   print("mdaklnffffffffffffffffffffffff");
-                  scaffolKey.currentState!.openDrawer();
+                  scaffolKey;
 
                 },
                 child: SvgPicture.asset("assets/images/menu.svg",

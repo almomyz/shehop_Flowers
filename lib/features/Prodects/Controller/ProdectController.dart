@@ -15,12 +15,27 @@ class ProdectController extends GetxController{
 
   }
   getProdect()async{
+
+
     CollectionReference userref =
     FirebaseFirestore.instance.collection("NEWS");
     var reponsbody = await userref.get();
    reponsbody.docs.forEach((element) {
      prodectList.add(ProdectsMode(image: element["imgurl"], name: element["name"]));
    });
+   update();
+  }
+
+  onSearch(String searchWord){
+    if(searchWord==null||searchWord ==''){
+      getProdect();
+    }
+    prodectList = prodectList
+        .where((element) =>
+        element.name.toLowerCase().contains(searchWord.toLowerCase()))
+        .toList();
+       print(prodectList.length);
+    update();
   }
 
 }
