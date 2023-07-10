@@ -29,6 +29,7 @@ class ProdectController extends GetxController{
   onSearch(String searchWord){
     if(searchWord==null||searchWord ==''){
       getProdect();
+      update();
     }
     prodectList = prodectList
         .where((element) =>

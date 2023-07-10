@@ -221,7 +221,7 @@ class _Categories_PageState extends State<Categories_Page> {
                             },
                             child: Text(
                               "عرض الكل",
-                              style: AppTheme.textTheme.bodyText2,
+                              style: TextStyle(color: AppTheme.secondaryColor,fontSize: 15,fontFamily: AppTheme.fontFamily,decoration: TextDecoration.underline,decorationThickness: 2),
                             ),
                           ),
                         ),

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shehop_flowers/features/ProdectDetails/Controller/LoginController.dart';
 import 'package:shimmer/shimmer.dart';
 
 
@@ -33,9 +34,11 @@ class _DetailsPageState extends State<DetailsPage> {
     size: 32,
   );
    bool isloding=false;
+   bool isLoding=false;
   final _formKey = GlobalKey<FormState>();
   final prodectDetailsController =     Get.put(ProdectDetailsController());
-  //final LoginController =     Get.put(LoginController());
+  final loginController =     Get.put(LoginController());
+  TextEditingController phone=TextEditingController();
   @override
   Widget build(BuildContext context) {
     screenUtil.init(context);
@@ -320,20 +323,19 @@ class _DetailsPageState extends State<DetailsPage> {
                                                           BorderRadius.all(Radius.circular(7)),
                                                         ),
                                                       ),),
-                                                      onPressed: () {
-                                                        // setState(() => isLoding = true);
-                                                        // controller.verifyPhone(
-                                                        //     phone.text, context);
-                                                        // await Future.delayed(
-                                                        //     const Duration(seconds: 15));
-                                                        //
-                                                        // setState(() => isLoding = false);
+                                                      onPressed: () async{
+                                                        setState(() => isLoding = true);
+                                                        loginController.verifyPhone(
+                                                            phone.text, context);
+                                                        await Future.delayed(
+                                                            const Duration(seconds: 15));
+                                                        setState(() => isLoding = false);
                                                         // SharedPreferences share =
                                                         //     await SharedPreferences
                                                         //     .getInstance();
                                                         // share.setString("phone", phone.text);
                                                       },
-                                                      child:isloding? Center(child: CircularProgressIndicator(color: Colors.white,strokeWidth: 5,)):Text("تاكيد"))),
+                                                      child:isLoding? Center(child: CircularProgressIndicator(color: Colors.white,strokeWidth: 5,)):Text("تاكيد"))),
                                             )
                                           ]),
                                     ),
@@ -412,20 +414,9 @@ class _DetailsPageState extends State<DetailsPage> {
       ),
     );
   }
-  otp(context){
-    showModalBottomSheet(context: context, builder: (context) {
-      return otpInpouts(context);
 
-
-
-
-
-
-
-    },);
 
 
   }
-}
 
 

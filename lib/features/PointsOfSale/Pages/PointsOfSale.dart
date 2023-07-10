@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shehop_flowers/features/Orders/Pages/DetailsOrderPage.dart';
+import 'package:shehop_flowers/features/Orders/presintation/Pages/DetailsOrderPage.dart';
 
 import '../../../core/app_theme.dart';
 import '../../../core/widgets/CustomPageRoute.dart';

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../../core/app_theme.dart';
+import '../../../../core/app_theme.dart';
+
 
 class DetailsOrderPage extends StatefulWidget {
   final name;

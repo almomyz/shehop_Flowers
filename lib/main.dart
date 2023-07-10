@@ -10,12 +10,14 @@ import 'package:shehop_flowers/features/Prodects/presintation/pages/ProdectPage.
 
 import 'features/Categories/Controller/CategoriesController.dart';
 
+import 'features/Orders/Controller/OrderController.dart';
 import 'features/ProdectDetails/Controller/ProdectDetailsController.dart';
 import 'features/Prodects/Controller/ProdectController.dart';
 import 'features/onboarding/introduction_screen.dart';
 import 'firebase_options.dart';
 bool show = true;
 final loginController =     Get.put(ProdectDetailsController());
+final orderController =     Get.put(OrderController());
 final CategriesController = Get.put(CategoriesController());
 final prodectController = Get.put(ProdectController());
 

@@ -54,10 +54,10 @@ class _ProdectPageState extends State<ProdectPage> {
                           margin: EdgeInsets.only(top: 70, left: 20, right: 30),
                           child: TextField(
                             onChanged: (searchWord){
-                                   setState(() {
+
                                      prodectController.onSearch(searchWord);
 
-                                   });
+
                             },
                             textDirection: TextDirection.rtl,
                               decoration: InputDecoration(
@@ -87,12 +87,14 @@ enabledBorder:  UnderlineInputBorder(
                       }
 
                         return  Container(
+                          padding: EdgeInsets.only(right: 15,left: 15),
                             child:  GridView.builder(
                               itemCount:controller.prodectList.length ,
                               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 30,
                                 mainAxisSpacing: 30,
+
                               ), itemBuilder: (context, index) {
                               return   InkWell(
                                 onTap: () {},

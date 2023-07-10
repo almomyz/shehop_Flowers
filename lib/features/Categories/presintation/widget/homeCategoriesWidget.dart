@@ -45,7 +45,8 @@ class HomeCategoriesWidget extends StatelessWidget {
               ),
               Text(
                 name,
-                style: AppTheme.textTheme.bodyText2,
+                style: AppTheme.textTheme.bodyText1,
+
 
               )
             ],
