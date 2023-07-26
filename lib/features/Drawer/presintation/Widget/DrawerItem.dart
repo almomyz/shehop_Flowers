@@ -18,7 +18,7 @@ class DrawerItem extends StatelessWidget {
         ontap();
       },
       child: Padding(
-        padding:  EdgeInsets.only(top: 15.0,right: 30,bottom: 15,left: 15),
+        padding:  EdgeInsets.only(top: screenUtil.screenHeight *.025,right: screenUtil.screenWidth *.05,bottom: screenUtil.screenHeight*.02,),
         child: Row(
          children: [
          Container(height: screenUtil.screenHeight *.06,width: screenUtil.screenWidth *.13,decoration:  BoxDecoration(

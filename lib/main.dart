@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shehop_flowers/core/app_theme.dart';
 import 'package:shehop_flowers/features/Categories/presintation/pages/Categories_Page.dart';
@@ -26,6 +27,7 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   final prefs = await SharedPreferences.getInstance();
   show = prefs.getBool('ON_BOARDING') ?? true ;
+  await GetStorage.init();
   runApp( MyApp());
 }
 

@@ -13,6 +13,7 @@ import 'package:flutter/foundation.dart'
 /// await Firebase.initializeApp(
 ///   options: DefaultFirebaseOptions.currentPlatform,
 /// );
+///
 /// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
@@ -26,10 +27,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -54,10 +52,22 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCuH8CGtgeMCB1mW71wWDwcS0tH9TNGzCQ',
-    appId: '1:159496270161:android:b1b14ded2b06605611a370',
+    appId: '1:159496270161:android:8b789651a392882d11a370',
     messagingSenderId: '159496270161',
     projectId: 'shelhop-92a9a',
     databaseURL: 'https://shelhop-92a9a-default-rtdb.firebaseio.com',
     storageBucket: 'shelhop-92a9a.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyDO483rWdrio7v0h02BxyRu_vFi7YfJQAE',
+    appId: '1:159496270161:ios:54a488c2d1fe3ea011a370',
+    messagingSenderId: '159496270161',
+    projectId: 'shelhop-92a9a',
+    databaseURL: 'https://shelhop-92a9a-default-rtdb.firebaseio.com',
+    storageBucket: 'shelhop-92a9a.appspot.com',
+    androidClientId: '159496270161-79i11vqrl663p7l6418k47htj4bn7r60.apps.googleusercontent.com',
+    iosClientId: '159496270161-ajh9f4o5e1cnnlq7ga4un907813iq00r.apps.googleusercontent.com',
+    iosBundleId: 'com.example.shehopFlowers',
   );
 }

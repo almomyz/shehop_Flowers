@@ -16,16 +16,15 @@ class IntroScreen extends StatelessWidget {
     PageViewModel(
       title: 'مرحبا بك ',
       body: 'كل ماتحتاجه من هدايا موجود',
-      footer: SizedBox(
-        height: 45,
-        width: 300,
-      ),
       image: Center(
         child: Lottie.asset("assets/json/Rose.json",width: 250,),
       ),
-      decoration: const PageDecoration(
+      decoration:  PageDecoration(
+        bodyTextStyle: TextStyle(color: AppTheme.secondaryColor,fontFamily: AppTheme.fontFamily,fontSize: 15),
         titleTextStyle: TextStyle(
           fontSize: 25.0,
+          color: AppTheme.primaryColor,
+          fontFamily: AppTheme.fontFamily,
           fontWeight: FontWeight.bold,
         )
       )
@@ -33,17 +32,16 @@ class IntroScreen extends StatelessWidget {
     PageViewModel(
         title: 'جميع انواع الهدايا ',
         body: '  هدايا زواج - هدايا العائله - هدايا اعياد الميلاد - وجميع انواع المناسبات  ',
-        footer: SizedBox(
-          height: 45,
-          width: 300,
 
-        ),
         image: Center(
           child: Lottie.asset("assets/json/boxes.json",width: 250,),
         ),
-        decoration: const PageDecoration(
+        decoration:  PageDecoration(
+            bodyTextStyle: TextStyle(color: AppTheme.secondaryColor,fontFamily: AppTheme.fontFamily,fontSize: 15),
             titleTextStyle: TextStyle(
               fontSize: 25.0,
+              color: AppTheme.primaryColor,
+              fontFamily: AppTheme.fontFamily,
               fontWeight: FontWeight.bold,
             )
         )
@@ -51,17 +49,15 @@ class IntroScreen extends StatelessWidget {
     PageViewModel(
         title: 'انت عليك المناسبه',
         body: 'واحنا علينا الهدية',
-        footer: SizedBox(
-          height: 45,
-          width: 300,
-
-        ),
         image: Center(
           child: Lottie.asset("assets/json/1.json",width: 250,),
         ),
-        decoration: const PageDecoration(
+        decoration:  PageDecoration(
+            bodyTextStyle: TextStyle(color: AppTheme.secondaryColor,fontFamily: AppTheme.fontFamily,fontSize: 15),
             titleTextStyle: TextStyle(
               fontSize: 25.0,
+              color: AppTheme.primaryColor,
+              fontFamily: AppTheme.fontFamily,
               fontWeight: FontWeight.bold,
             )
         )
@@ -85,11 +81,11 @@ class IntroScreen extends StatelessWidget {
               activeColor:AppTheme.primaryColor,
             ),
             showDoneButton: true,
-            done: const Text('ابدأ', style: TextStyle(fontSize: 20,color: AppTheme.primaryColor,fontWeight: FontWeight.bold),),
+            done:  Text('ابدأ', style: TextStyle(fontSize: 20,color: AppTheme.primaryColor,fontWeight: FontWeight.bold,fontFamily: AppTheme.fontFamily),),
             showSkipButton: true,
-            skip: const Text('تخطي', style: TextStyle(fontSize: 20,color: AppTheme.primaryColor,fontWeight: FontWeight.bold),),
+            skip:  Text('تخطي', style: TextStyle(fontSize: 20,color: AppTheme.primaryColor,fontWeight: FontWeight.bold,fontFamily: AppTheme.fontFamily),),
             showNextButton: true,
-            next: const Icon(Icons.arrow_forward, size: 25,color: AppTheme.primaryColor),
+            next: const Icon(Icons.arrow_forward, size: 30,color: AppTheme.primaryColor),
             onDone: () => onDone(context),
             curve: Curves.bounceOut,
           ),

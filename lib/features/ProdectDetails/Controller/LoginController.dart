@@ -1,3 +1,4 @@
+import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shehop_flowers/core/app_theme.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -28,6 +29,8 @@ class LoginController extends GetxController {
   TextEditingController otp5=TextEditingController();
   TextEditingController otp6=TextEditingController();
   ScreenUtil screenUtil =ScreenUtil();
+  GetStorage box=GetStorage();
+
   verifyPhone(String phone, context) async {
     await auth.verifyPhoneNumber(
         timeout: Duration(seconds: 120),
@@ -44,8 +47,7 @@ class LoginController extends GetxController {
                 "تم ارسال الكود بنجاح", backgroundColor: AppTheme.primaryColor,
               ));
           Navigator.pop(context);
-          await Future.delayed(
-              Duration(seconds: 2));
+
           showModalBottomSheet(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
@@ -94,12 +96,19 @@ class LoginController extends GetxController {
                               onPressed: ()async {
                                 verifyOTP(otp1.text+otp2.text+otp3.text+otp4.text+otp5.text+otp6.text,context);
                               },
-                              child: Text("تحقق")
+                              child: Text("تحقق",    style: TextStyle(color: Colors.white,fontFamily: AppTheme.fontFamily,fontWeight: FontWeight.bold))
 
                           )
                       ),
                     ),
-                    Text('اعاده ارسال الكود'),
+                    InkWell(
+                        onTap: ()async{
+                          await resend(phone,context);
+                        },
+                        child:
+
+
+                    Text('اعاده ارسال الكود',style: TextStyle(fontFamily: AppTheme.fontFamily,color: AppTheme.secondaryColor,decoration: TextDecoration.underline),)),
                   ],
                 ),
               ),
@@ -153,7 +162,7 @@ class LoginController extends GetxController {
           verificationId: this.verificationID, smsCode: otp);
 
       await auth.signInWithCredential(credential);
-
+      box.write('phoneNumber',phoneN);
       showDialog(
         barrierDismissible: true,
         barrierColor: AppTheme.primaryColor,
@@ -170,7 +179,7 @@ class LoginController extends GetxController {
 
       await Future.delayed(
            Duration(seconds: 5));
-      await Navigator.push(
+      await Navigator.pushReplacement(
           context,
           CustomPageRoute(  child:  const OredrsPage()));
     }

@@ -14,6 +14,7 @@ import 'package:shimmer/shimmer.dart';
 import '../../../../core/app_theme.dart';
 import '../../../../core/widgets/CustomPageRoute.dart';
 import '../../../../core/widgets/myCustemAppber.dart';
+import '../../../Categories/Controller/CategoriesController.dart';
 import '../../../ProdectDetails/presintation/Pages/DetailsPage.dart';
 
 class ProdectPage extends StatefulWidget {
@@ -29,9 +30,12 @@ class ProdectPage extends StatefulWidget {
 class _ProdectPageState extends State<ProdectPage> {
   String? nameCategories="";
   final prodectController = Get.put(ProdectController());
- ScreenUtil screenUtil =ScreenUtil();
-  late Query<Map<String, dynamic>> userref ;
+  final categoriesController = Get.put(CategoriesController());
+
+  ScreenUtil screenUtil =ScreenUtil();
+
   GlobalKey<ScaffoldState> scaffolKey = GlobalKey<ScaffoldState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +59,7 @@ class _ProdectPageState extends State<ProdectPage> {
                           child: TextField(
                             onChanged: (searchWord){
 
-                                     prodectController.onSearch(searchWord);
+                                     prodectController.onSearch(searchWord,widget.nameCategories.toString());
 
 
                             },
@@ -82,14 +86,12 @@ enabledBorder:  UnderlineInputBorder(
                     width: double.infinity,
                     child: GetBuilder<ProdectController>(
                       builder: (controller) {
-                      if(controller ==controller.onStart){
-                           return Container(height: 100,width: 100,color: Colors.red,);
-                      }
+
 
                         return  Container(
                           padding: EdgeInsets.only(right: 15,left: 15),
                             child:  GridView.builder(
-                              itemCount:controller.prodectList.length ,
+                              itemCount: widget.nameCategories.toString()=='جديدنا'? categoriesController.newList.length  :controller.prodectList.length ,
                               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 30,
@@ -104,7 +106,7 @@ enabledBorder:  UnderlineInputBorder(
                                     Navigator.push(
                                         context,
                                         CustomPageRoute(  child:
-                                        DetailsPage(imagePath:  "${controller.prodectList[index].image}", name:  "${controller.prodectList[index].name}",nameCategres: widget.nameCategories,)));
+                                        DetailsPage(id:widget.nameCategories.toString()=='جديدنا'? categoriesController.newList[index].id: controller.prodectList[index].id,imagePath:widget.nameCategories.toString()=='جديدنا'? categoriesController.newList[index].image  : "${controller.prodectList[index].image}", name: widget.nameCategories.toString()=='جديدنا'? categoriesController.newList[index].name: "${controller.prodectList[index].name}",nameCategres: widget.nameCategories,)));
                                   },
                                   child: Column(
 
@@ -122,6 +124,8 @@ enabledBorder:  UnderlineInputBorder(
                                               placeholder:
                                               'assets/images/loading.png',
                                               image:
+
+                    widget.nameCategories.toString()=='جديدنا'? categoriesController.newList[index].image:
                                               "${controller.prodectList[index].image}",
                                               fit: BoxFit.cover,
                                               imageErrorBuilder:
@@ -142,7 +146,8 @@ enabledBorder:  UnderlineInputBorder(
                                       Expanded(
                                         flex:1,
                                         child: Text(
-                                          "${controller.prodectList[index].name}",
+                                          widget.nameCategories.toString()=='جديدنا'? categoriesController.newList[index].name:
+                                          "   ${controller.prodectList[index].name}",
                                           style: AppTheme.textTheme.bodyText2,
                                         ),
                                       )
@@ -153,108 +158,6 @@ enabledBorder:  UnderlineInputBorder(
                             },)
 
 
-                          // StreamBuilder<QuerySnapshot>(
-                          //   stream: userref.snapshots(),
-                          //   builder: (context, snapshot) {
-                          //     if (snapshot.hasData) {
-                          //       return Container(
-                          //         child: GridView.builder(
-                          //             padding: EdgeInsets.all(20),
-                          //             itemCount: snapshot.data!.docs.length,
-                          //             gridDelegate:
-                          //                 const SliverGridDelegateWithFixedCrossAxisCount(
-                          //               crossAxisCount: 2,
-                          //               crossAxisSpacing: 30,
-                          //               mainAxisSpacing: 30,
-                          //             ),
-                          //             itemBuilder: (context, i) {
-                          //               return InkWell(
-                          //                 onTap: () {},
-                          //                 child:
-                          //                 InkWell(
-                          //                  onTap: (){
-                          //                    Navigator.push(
-                          //                        context,
-                          //                        CustomPageRoute(  child:
-                          //                        DetailsPage(imagePath:  "${snapshot.data!.docs[i]["imgurl"]}", name:  "${snapshot.data!.docs[i]["name"]}",nameCategres: widget.nameCategories,)));
-                          //                  },
-                          //                   child: Column(
-                          //
-                          //                     children: [
-                          //
-                          //                       Expanded(
-                          //                          flex:7,
-                          //                         child: ClipRRect(
-                          //                           borderRadius:
-                          //                               BorderRadius.all(Radius.circular(10)),
-                          //                           child: AspectRatio(
-                          //                             aspectRatio: 16 / 9,
-                          //                             child:
-                          //                                 FadeInImage.assetNetwork(
-                          //                                   placeholder:
-                          //                                       'assets/images/loading.png',
-                          //                                   image:
-                          //                                       "${snapshot.data!.docs[i]["imgurl"]}",
-                          //                                   fit: BoxFit.cover,
-                          //                                   imageErrorBuilder:
-                          //                                       (context, url, error) => Center(
-                          //                                           child: Shimmer.fromColors(
-                          //                                     highlightColor: Colors.white,
-                          //                                     baseColor: Colors.grey[300]!,
-                          //                                     child: Container(color: Colors.red),
-                          //                                   )),
-                          //                                   fadeInCurve: Curves.bounceIn,
-                          //                                   height: 200,
-                          //                                   width: 180,
-                          //
-                          //                             ),
-                          //                           ),
-                          //                         ),
-                          //                       ),
-                          //                       Expanded(
-                          //                         flex:1,
-                          //                         child: Text(
-                          //                           "${snapshot.data!.docs[i]["name"]}",
-                          //                           style: AppTheme.textTheme.bodyText2,
-                          //                         ),
-                          //                       )
-                          //                     ],
-                          //                   ),
-                          //                 ),
-                          //               );
-                          //             }),
-                          //       );
-                          //     }
-                          //
-                          //     if (snapshot.connectionState == ConnectionState.waiting) {
-                          //       return Expanded(
-                          //         child: Container(
-                          //           child: GridView.builder(
-                          //             gridDelegate:
-                          //                 SliverGridDelegateWithFixedCrossAxisCount(
-                          //                     crossAxisCount: 2),
-                          //             itemCount: 10,
-                          //             itemBuilder: (context, index) {
-                          //               return Shimmer.fromColors(
-                          //                   highlightColor: Colors.white,
-                          //                   baseColor: Colors.grey[300]!,
-                          //                   child: Container(
-                          //                     height: 150,
-                          //                     width: 150,
-                          //                     color: Colors.grey[300]!,
-                          //                   ));
-                          //             },
-                          //           ),
-                          //         ),
-                          //       );
-                          //     }
-                          //
-                          //     if (snapshot.hasError) {
-                          //       {}
-                          //     }
-                          //     return Text("ok");
-                          //   },
-                          // ),
                         );
 
                       },
@@ -274,10 +177,15 @@ enabledBorder:  UnderlineInputBorder(
   void initState() {
     // TODO: implement initState
     super.initState();
-    userref = FirebaseFirestore.instance
-        .collection("${widget.nameCategories}")
-        .orderBy("entery_date", descending: true);
+
+    prodectController.getProdect(widget.nameCategories.toString());
+
+}
+
+@override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    prodectController.prodectList.clear();
   }
-
-
 }

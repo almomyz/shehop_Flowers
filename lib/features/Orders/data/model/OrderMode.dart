@@ -1,20 +1,30 @@
-class OrderMode {
-  dynamic Date_Order, name ,OrderN ,Order_Status,imgurl,note,phoneNumber,token;
+class OrderModel {
+  dynamic Date_Order, name ,OrderN ,Order_Status,imgurl,note,phoneNumber,token,nameCategres,typeOrder,id,count_order;
 
-  OrderMode({required this.Date_Order,
+  OrderModel({
+    required this.Date_Order,
+    required this.nameCategres,
+    required this.typeOrder,
+    required this.count_order,
+    required this.id,
+
     required this.name,required this.imgurl,required this.note,required this.Order_Status,required this.OrderN,required this.phoneNumber,required this.token,
   });
 
-  factory OrderMode.fromJson(Map<String, dynamic> order) {
-    return OrderMode(
+  factory OrderModel.fromJson(Map<String, dynamic> order) {
+    return OrderModel(
 
       name: order['name'],
+      typeOrder: order['typeOrder'],
+      id: order['id'],
+      count_order: order['count_order'],
       Order_Status: order['Order_Status'],
       note: order['note'],
       imgurl: order['imgurl'],
       Date_Order: order['Date_Order'],
       token: order['token'],
       phoneNumber: order['phoneNumber'],
+      nameCategres: order['nameCategres'],
       OrderN: order['OrderN'],
 
 
@@ -22,29 +32,33 @@ class OrderMode {
     );
   }
 
-  OrderMode fromJson(Map<String, dynamic> json) {
-    return OrderMode.fromJson(json);
+  OrderModel fromJson(Map<String, dynamic> json) {
+    return OrderModel.fromJson(json);
   }
 
-  factory OrderMode.init() {
-    return OrderMode(
+  factory OrderModel.init() {
+    return OrderModel(
       Date_Order: '',
+      count_order: '',
       name: '',
+      typeOrder: '',
       imgurl: '',
       note:'',
       Order_Status:'',
       OrderN:'',
       phoneNumber:'',
       token:'',
+      id:'',
+      nameCategres:'',
 
 
     );
   }
 
   fromJsonList(List<dynamic> jsonList) {
-    List<OrderMode> data = [];
+    List<OrderModel> data = [];
     jsonList.forEach((post) {
-      data.add(OrderMode.fromJson(post));
+      data.add(OrderModel.fromJson(post));
     });
     return data;
   }
@@ -55,9 +69,13 @@ class OrderMode {
     'name': name,
     'imgurl':imgurl,
     'note':note,
+    'typeOrder':typeOrder,
+    'count_order':count_order,
     'Order_Status':Order_Status,
     'OrderN':OrderN,
     'phoneNumber':phoneNumber,
     'token':token,
+    'nameCategres':nameCategres,
+    'id':id,
   };
 }

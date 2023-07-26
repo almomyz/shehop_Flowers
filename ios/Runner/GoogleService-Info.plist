@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>159496270161-ajh9f4o5e1cnnlq7ga4un907813iq00r.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.159496270161-ajh9f4o5e1cnnlq7ga4un907813iq00r</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>159496270161-79i11vqrl663p7l6418k47htj4bn7r60.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDO483rWdrio7v0h02BxyRu_vFi7YfJQAE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>159496270161</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.shehopFlowers</string>
+	<key>PROJECT_ID</key>
+	<string>shelhop-92a9a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>shelhop-92a9a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:159496270161:ios:54a488c2d1fe3ea011a370</string>
+	<key>DATABASE_URL</key>
+	<string>https://shelhop-92a9a-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

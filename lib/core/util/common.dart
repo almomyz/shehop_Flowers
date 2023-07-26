@@ -4,6 +4,7 @@ import 'package:shehop_flowers/core/util/ScreenUtil.dart';
 import '../../features/ProdectDetails/presintation/Widgets/OtpInpouts.dart';
 import '../app_theme.dart';
 ScreenUtil screenUtil=ScreenUtil();
+GlobalKey<ScaffoldState> scaffolKey = GlobalKey<ScaffoldState>();
 
 
 // OtpAuth(context){

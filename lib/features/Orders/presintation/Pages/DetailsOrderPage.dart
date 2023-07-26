@@ -1,14 +1,29 @@
+import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../core/app_theme.dart';
+import '../../../Favorite/Controller/FavoriteController.dart';
+import '../../../Prodects/data/model/ProdectsModel.dart';
 
 
 class DetailsOrderPage extends StatefulWidget {
   final name;
   final imagePath;
+  final Date_Order;
+  final phoneNumber;
+  final OrderN;
+  final Order_Status;
+  final note;
+  final count_order;
+  final nameCategres;
+  final id;
 
-  const DetailsOrderPage({Key? key,required this.name, required this.imagePath}) : super(key: key);
+
+
+  const DetailsOrderPage({Key? key,required this.id,required this.name, required this.imagePath,required this.Date_Order,required this.phoneNumber,required this.OrderN,required this.Order_Status,required this.note,required this.count_order,required this.nameCategres}) : super(key: key);
 
   @override
   State<DetailsOrderPage> createState() => _DetailsOrderPageState();
@@ -17,7 +32,10 @@ class DetailsOrderPage extends StatefulWidget {
 class _DetailsOrderPageState extends State<DetailsOrderPage> {
   int NumOreder = 0;
   var Content;
+  TextEditingController note=TextEditingController();
+  final favoriteController = Get.put(FavoriteController());
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
@@ -62,6 +80,7 @@ class _DetailsOrderPageState extends State<DetailsOrderPage> {
                     children: [
                       CircleAvatar(
                           child: IconButton(
+
                               icon: Icon(Icons.arrow_back,
                                   size: 25, color: AppTheme.primaryColor),
                               onPressed: () {
@@ -69,39 +88,94 @@ class _DetailsOrderPageState extends State<DetailsOrderPage> {
                               }),
                           backgroundColor: Colors.white),
                       CircleAvatar(
-                          child: IconButton(
-                              icon: Icon(Icons.favorite),
-                              onPressed: () {},
-                              color: Colors.red),
+                          child: FavoriteButton(
+                            iconSize: 40,
+                            isFavorite:favoriteController.favoriteList
+                                .where((element) =>
+                                element.id.toString().toLowerCase().contains(widget.id))
+                                .toList().length!=0?true:false,
+                            iconDisabledColor: Colors.grey,
+                            valueChanged: (_isFavorite) {
+                              print('Is Favorite $_isFavorite)');
+                              favoriteController.addFavorite(ProdectsModel(nameCategory: widget.nameCategres,image: widget.imagePath,name: widget.name,id: 1));
+                            },
+                          ),
                           backgroundColor: Colors.white),
                     ],
                   ),
                 )
               ],
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 200, top: 15, bottom: 30),
-              child: Column(
-                children: [
+            SizedBox(height: 20,),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "${widget.name}",
+                  style: AppTheme.textTheme.headline4,
+                ),
+                SizedBox(height: 10,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+
+                  children: [
+
                   Text(
-                    "${widget.name}",
-                    style: AppTheme.textTheme.headline4,
+                    "${widget.OrderN}",
+                    style: AppTheme.textTheme.bodyText1,
                   ),
                   Text(
-                    "${widget.name}",
-                    style: AppTheme.textTheme.headline4,
+                    " : رقم الطلب ",
+                    style: AppTheme.textTheme.bodyText1,
+                  ),
+                ],),
+                SizedBox(height: 10,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+
+                  Text(
+                    "${widget.phoneNumber}",
+                    style: AppTheme.textTheme.bodyText1,
                   ),
                   Text(
-                    "${widget.name}",
-                    style: AppTheme.textTheme.headline4,
+                    " : رقم الهاتف ",
+                    style: AppTheme.textTheme.bodyText1,
+                  ),
+                ],),
+                SizedBox(height: 10,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+
+                  Text(
+                    "${widget.Date_Order}",
+                    style: AppTheme.textTheme.bodyText1,
                   ),
                   Text(
-                    "${widget.name}",
-                    style: AppTheme.textTheme.headline4,
+                    " : تاريخ الطلب  ",
+                    style: AppTheme.textTheme.bodyText1,
                   ),
-                ],
-              ),
+                ],),
+                SizedBox(height: 10,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+
+                  Text(
+                    widget.count_order ==1?'تم ارسال الطلب' :widget.count_order==2?'......جاري العمل على الطلب':'تم اكمال الطلب',
+                    style: AppTheme.textTheme.bodyText1,
+                  ),
+                  Text(
+                    " : حاله الطلب   ",
+                    style: AppTheme.textTheme.bodyText1,
+                  ),
+                ],),
+
+              ],
             ),
+            SizedBox(height: 20,),
 
             Divider(),
             Padding(
@@ -116,6 +190,7 @@ class _DetailsOrderPageState extends State<DetailsOrderPage> {
               padding: const EdgeInsets.only(left: 30, bottom: 50),
               child: TextFormField(
                 maxLines: 4,
+                controller: note,
                 style: TextStyle(color: AppTheme.primaryColor),
                 textDirection: TextDirection.rtl,
                 decoration: InputDecoration(
@@ -150,7 +225,7 @@ class _DetailsOrderPageState extends State<DetailsOrderPage> {
                       onPressed: () {
 
                       },
-                      child: Text("اعـاده الـطلب",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),))),
+                      child: Text("اعـاده الـطلب",style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold,fontFamily: AppTheme.fontFamily),))),
             )
 
 
@@ -160,7 +235,12 @@ class _DetailsOrderPageState extends State<DetailsOrderPage> {
       ),
     );
   }
- 
+ @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    note.text=widget.note;
+  }
 }
 
 

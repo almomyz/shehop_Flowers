@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../core/app_theme.dart';
+import '../../../../core/util/common.dart';
 import '../../../../core/widgets/CustomPageRoute.dart';
 import '../../../../core/widgets/myCustemAppber.dart';
 import '../../../Drawer/presintation/Page/DrawerWidget.dart';
@@ -21,8 +22,9 @@ class OredrsPage extends StatefulWidget {
 
 class _OredrsPageState extends State<OredrsPage> {
   @override
-  GlobalKey<ScaffoldState> scaffolKey = GlobalKey<ScaffoldState>();
   final orderController =     Get.put(OrderController());
+  GlobalKey<ScaffoldState> scaffolKey = GlobalKey<ScaffoldState>();
+
   Widget build(BuildContext context) {
     return SafeArea(
       child: Directionality(
@@ -61,7 +63,15 @@ class _OredrsPageState extends State<OredrsPage> {
                   ],
                 ),
                 Expanded(
-                  child: ListView.builder(
+                  child:controller.orderList.length==0? Center(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                      Text('لا يوجد اي طلبات حاليا',style: AppTheme.textTheme.bodyText1,),
+
+                    ]),
+                  ): ListView.builder(
                     itemCount: controller.orderList.length,
                     itemBuilder: (context, index) {
                       return InkWell(
@@ -70,8 +80,19 @@ class _OredrsPageState extends State<OredrsPage> {
                           Navigator.push(
                               context,
                               CustomPageRoute(
-                                  child: DetailsOrderPage(name:"هدايا" ,
-                                    imagePath: "assets/images/wp3338438.jpg",
+                                  child: DetailsOrderPage(
+                                    id: controller.orderList[index].name,
+                                    name:controller.orderList[index].name ,
+                                    imagePath: controller.orderList[index].imgurl,
+                                    count_order: controller.orderList[index].count_order,
+                                    Date_Order: controller.orderList[index].Date_Order,
+                                    phoneNumber: controller.orderList[index].phoneNumber,
+                                    note: controller.orderList[index].name,
+                                    OrderN: controller.orderList[index].OrderN,
+                                    Order_Status: controller.orderList[index].Order_Status,
+                                    nameCategres: controller.orderList[index].nameCategres,
+
+
                                   )));
                         },
                         child: Card(

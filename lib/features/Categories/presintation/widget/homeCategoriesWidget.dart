@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../../core/app_theme.dart';
 import '../../../../core/util/ScreenUtil.dart';
@@ -37,9 +38,23 @@ class HomeCategoriesWidget extends StatelessWidget {
                       height: screenUtil.screenHeight *.09,
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(12),
-                          child: Image.asset(
-                            image,
+                          child: FadeInImage.assetNetwork(
+                            placeholder:
+                            'assets/images/loading.png',
+                            image: image,
                             fit: BoxFit.cover,
+                            width: double.infinity,
+                            imageErrorBuilder: (context,
+                                url, error) =>
+                                Center(
+                                    child:
+                                    Shimmer.fromColors(
+                                      highlightColor: Colors.white,
+                                      baseColor: Colors.grey[300]!,
+                                      child: Container(
+                                          color: AppTheme.primaryColor),
+                                    )),
+                            fadeInCurve: Curves.bounceIn,
                           ))),
                 ),
               ),
@@ -67,9 +82,23 @@ class HomeCategoriesWidget extends StatelessWidget {
                   height: screenUtil.screenHeight *.1,
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
-                      child: Image.asset(
-                        image,
+                      child: FadeInImage.assetNetwork(
+                        placeholder:
+                        'assets/images/loading.png',
+                        image: image,
                         fit: BoxFit.cover,
+                        width: double.infinity,
+                        imageErrorBuilder: (context,
+                            url, error) =>
+                            Center(
+                                child:
+                                Shimmer.fromColors(
+                                  highlightColor: Colors.white,
+                                  baseColor: Colors.grey[300]!,
+                                  child: Container(
+                                      color: AppTheme.primaryColor),
+                                )),
+                        fadeInCurve: Curves.bounceIn,
                       ))),
               Text(
                 name,

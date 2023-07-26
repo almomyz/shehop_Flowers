@@ -4,13 +4,18 @@ import 'package:shehop_flowers/features/Drawer/presintation/Page/DrawerWidget.da
 
 import '../app_theme.dart';
 import '../util/ScreenUtil.dart';
+import '../util/common.dart';
 
-class myCustemAppber extends StatelessWidget {
+class myCustemAppber extends StatefulWidget {
   String name;
   final scaffolKey;
-   myCustemAppber({Key? key,required this.scaffolKey,required this.name}) : super(key: key);
+   myCustemAppber({Key? key,required this.name,required this.scaffolKey}) : super(key: key);
 
+  @override
+  State<myCustemAppber> createState() => _myCustemAppberState();
+}
 
+class _myCustemAppberState extends State<myCustemAppber> {
   ScreenUtil screenUtil =ScreenUtil();
 
   @override
@@ -35,7 +40,8 @@ class myCustemAppber extends StatelessWidget {
               InkWell(
                 onTap: () {
                   print("mdaklnffffffffffffffffffffffff");
-                  scaffolKey;
+                  widget.scaffolKey.currentState?.openDrawer();
+
 
                 },
                 child: SvgPicture.asset("assets/images/menu.svg",
@@ -45,7 +51,7 @@ class myCustemAppber extends StatelessWidget {
                     height: 30.85),
               ),
               Text(
-                "$name",
+                "${widget.name}",
                 style: AppTheme.textTheme.headline2,
               ), //assets/images/meun2.svg
               SvgPicture.asset("assets/images/notification.svg",
