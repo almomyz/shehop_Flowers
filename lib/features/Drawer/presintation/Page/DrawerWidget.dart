@@ -122,14 +122,15 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                           )));
                 }),
                 DrawerItem(icon: Icon(Icons.request_page_outlined),text: "طلبات خاصة",ontap: (){
-    if(widget.scaffolKey.currentContext.widget !=widget.scaffolKey.currentContext.widget) {
       Navigator.push(
           context,
           CustomPageRoute(
-              child: SpacialRequestPage(
-              )));
-    }
-                }),
+              child: SpacialRequestPage()));
+
+                }
+
+
+                ),
                 DrawerItem(icon: Icon(Icons.checklist_outlined),text: "قائمة الطلبات",ontap: (){
                   Navigator.push(
                       context,

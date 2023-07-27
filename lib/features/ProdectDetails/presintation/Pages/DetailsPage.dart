@@ -18,6 +18,7 @@ import '../../../Prodects/data/model/ProdectsModel.dart';
 import '../../Controller/ProdectDetailsController.dart';
 import '../Widgets/DoneWidget.dart';
 import '../Widgets/OtpInpouts.dart';
+import '../Widgets/ZoomImage.dart';
 
 class DetailsPage extends StatefulWidget {
   final name;
@@ -61,7 +62,7 @@ class _DetailsPageState extends State<DetailsPage> {
             Stack(
               children: [
                 Container(
-                  height: 300,
+                  height: screenUtil.screenHeight *.37,
                   width: double.infinity,
                   decoration: BoxDecoration(
                       color: AppTheme.primaryColor,
@@ -72,20 +73,32 @@ class _DetailsPageState extends State<DetailsPage> {
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(24),
                         bottomRight: Radius.circular(24)),
-                    child: FadeInImage.assetNetwork(
-                      placeholder: 'assets/images/loading.png',
-                      image:
-                      imageUrl ?? widget.imagePath,
-                      fit: BoxFit.cover,
-                      imageErrorBuilder: (context, url, error) => Center(
-                          child: Shimmer.fromColors(
-                        highlightColor: Colors.white,
-                        baseColor: Colors.grey[300]!,
-                        child: Container(color: Colors.red),
-                      )),
-                      fadeInCurve: Curves.bounceIn,
-                      height: 200,
-                      width: 180,
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(
+                            context,
+                            CustomPageRoute(child:ZoomImage(pathImage: imageUrl ?? widget.imagePath,)
+                            )
+
+                        );
+                      },
+                      child: Hero(
+                        tag: 'tag_1',
+                        child: FadeInImage.assetNetwork(
+                          placeholder: 'assets/images/loading.png',
+                          image:
+                          imageUrl ?? widget.imagePath,
+                          fit: BoxFit.cover,
+                          imageErrorBuilder: (context, url, error) => Center(
+                              child: Shimmer.fromColors(
+                            highlightColor: Colors.white,
+                            baseColor: Colors.grey[300]!,
+                            child: Container(color: Colors.red),
+                          )),
+                          fadeInCurve: Curves.bounceIn,
+
+                        ),
+                      ),
                     ),
                   ),
                 ),

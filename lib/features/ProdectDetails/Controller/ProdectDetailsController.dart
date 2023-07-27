@@ -168,7 +168,10 @@ phoneAuth(String phoneNumber,context,_formKey,phone){
           },);
         });
 
-  }else{
+  }
+
+  else{
+
     showDialog(context: context, builder: (context) {
       return  Container(
         child: Center(

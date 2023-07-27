@@ -36,7 +36,6 @@ class _Categories_PageState extends State<Categories_Page> {
   final CarouselController carouselController = CarouselController();
   int currentIndex = 0;
 
-
   ScreenUtil screenUtil = ScreenUtil();
 
   final categoriesController = Get.put(CategoriesController());
@@ -56,7 +55,8 @@ class _Categories_PageState extends State<Categories_Page> {
                 child: Column(
                   children: [
                     Stack(children: [
-                      myCustemAppber(name: "القائمه الرئسية",scaffolKey: scaffolKey ),
+                      myCustemAppber(
+                          name: "القائمه الرئسية", scaffolKey: scaffolKey),
                       Padding(
                         padding: EdgeInsets.only(
                             top: screenUtil.screenHeightNoPadding * .2),
@@ -70,34 +70,37 @@ class _Categories_PageState extends State<Categories_Page> {
                                 child: Stack(
                                   children: [
                                     Container(
-
                                       height: screenUtil.screenHeight * .25,
                                       width: double.infinity,
                                       child: CarouselSlider(
                                         items: imageList
                                             .map(
                                               (item) => Container(
-
                                                 child: ClipRRect(
                                                   borderRadius:
                                                       BorderRadius.circular(12),
-                                                  child: FadeInImage.assetNetwork(
+                                                  child:
+                                                      FadeInImage.assetNetwork(
                                                     placeholder:
                                                         'assets/images/loading.png',
                                                     image: item,
                                                     fit: BoxFit.cover,
                                                     width: double.infinity,
-                                                    imageErrorBuilder: (context,
-                                                            url, error) =>
-                                                        Center(
-                                                            child:
-                                                                Shimmer.fromColors(
-                                                      highlightColor: Colors.white,
-                                                      baseColor: Colors.grey[300]!,
+                                                    imageErrorBuilder:
+                                                        (context, url, error) =>
+                                                            Center(
+                                                                child: Shimmer
+                                                                    .fromColors(
+                                                      highlightColor:
+                                                          Colors.white,
+                                                      baseColor:
+                                                          Colors.grey[300]!,
                                                       child: Container(
-                                                          color: AppTheme.primaryColor),
+                                                          color: AppTheme
+                                                              .primaryColor),
                                                     )),
-                                                    fadeInCurve: Curves.bounceIn,
+                                                    fadeInCurve:
+                                                        Curves.bounceIn,
                                                   ),
                                                 ),
                                               ),
@@ -117,16 +120,18 @@ class _Categories_PageState extends State<Categories_Page> {
                                       ),
                                     ),
                                     Padding(
-                                      padding:  EdgeInsets.only(right: screenUtil.screenWidth*.75,top: screenUtil.screenHeight *.17),
-                                      child: Row(children:
-                                      [
-
+                                      padding: EdgeInsets.only(
+                                          right: screenUtil.screenWidth * .75,
+                                          top: screenUtil.screenHeight * .17),
+                                      child: Row(children: [
                                         CircleAvatar(
-                                          radius: 25,
+                                            radius: 25,
                                             backgroundColor: Colors.white,
-                                            child: Image.asset('assets/images/Special-offer.png',height: 50,width: 50,)),
-
-
+                                            child: Image.asset(
+                                              'assets/images/Special-offer.png',
+                                              height: 50,
+                                              width: 50,
+                                            )),
                                       ]),
                                     ),
                                   ],
@@ -160,7 +165,6 @@ class _Categories_PageState extends State<Categories_Page> {
                                   }).toList(),
                                 ),
                               ),
-
                             ],
                           ),
                         ]),
@@ -201,8 +205,10 @@ class _Categories_PageState extends State<Categories_Page> {
                                 setState(() {
                                   print('kkkkk');
                                   itemisselected = index;
-                                  nameofCollection = controller.categories[index].name;
-                                  controller.getdate(controller.categories[index].name);
+                                  nameofCollection =
+                                      controller.categories[index].name;
+                                  controller.getdate(
+                                      controller.categories[index].name);
                                 });
                               },
                               isSelected:
@@ -217,37 +223,36 @@ class _Categories_PageState extends State<Categories_Page> {
                     ),
                     controller.categoriesList.length == 0
                         ? Container(
-                      height: screenUtil.screenHeight * .20,
-                      width: double.infinity,
-                          child: ListView.builder(
+                            height: screenUtil.screenHeight * .20,
+                            width: double.infinity,
+                            child: ListView.builder(
                               shrinkWrap: true,
                               scrollDirection: Axis.horizontal,
                               itemCount: 5,
                               itemBuilder: (context, index) {
                                 return Container(
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20))),
-                                  width: screenUtil.screenWidth *.45,
-                                  height: screenUtil.screenHeight *.08,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                  width: screenUtil.screenWidth * .45,
+                                  height: screenUtil.screenHeight * .08,
                                   padding: EdgeInsets.all(10),
-
                                   child: Shimmer.fromColors(
-
                                     highlightColor: Colors.transparent,
                                     baseColor: Colors.grey[300]!,
                                     child: Container(
                                       decoration: BoxDecoration(
                                           color: Colors.red,
-                                          borderRadius: BorderRadius.all(Radius.circular(20))),
-
-                                      width: screenUtil.screenWidth *.4,
-                                        height: screenUtil.screenHeight *.15,
-
-                                        ),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20))),
+                                      width: screenUtil.screenWidth * .4,
+                                      height: screenUtil.screenHeight * .15,
+                                    ),
                                   ),
                                 );
                               },
                             ),
-                        )
+                          )
                         : Container(
                             height: screenUtil.screenHeight * .2,
                             width: double.infinity,
@@ -318,7 +323,6 @@ class _Categories_PageState extends State<Categories_Page> {
                           padding: EdgeInsets.only(
                               right: screenUtil.screenWidth * .05),
                           child: Text(
-                            
                             "جديدنا",
                             style: AppTheme.textTheme.headline1,
                           ),
@@ -355,102 +359,115 @@ class _Categories_PageState extends State<Categories_Page> {
                         width: double.infinity,
                         child: GetBuilder<CategoriesController>(
                           builder: (controller) {
-                            return
-                              controller.newList.length==0? Container(
-                                height: screenUtil.screenHeight * .25,
-                                width: double.infinity,
-                                child: ListView.builder(
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: 5,
-                                  itemBuilder: (context, index) {
-                                    return Container(
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20))),
-                                      width: screenUtil.screenWidth *.45,
-                                      height: screenUtil.screenHeight *.08,
-                                      padding: EdgeInsets.all(10),
-
-                                      child: Shimmer.fromColors(
-
-                                        highlightColor: Colors.transparent,
-                                        baseColor: Colors.grey[300]!,
-                                        child: Container(
+                            return controller.newList.length == 0
+                                ? Container(
+                                    height: screenUtil.screenHeight * .25,
+                                    width: double.infinity,
+                                    child: ListView.builder(
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: 5,
+                                      itemBuilder: (context, index) {
+                                        return Container(
                                           decoration: BoxDecoration(
-                                              color: AppTheme.primaryColor,
-                                              borderRadius: BorderRadius.all(Radius.circular(20))),
-
-                                          width: screenUtil.screenWidth *.4,
-                                          height: screenUtil.screenHeight *.15,
-
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ):
-                              ListView.builder(
-                                shrinkWrap: true,
-                                scrollDirection: Axis.horizontal,
-                                itemCount: 5,
-                                itemBuilder: ((context, index) {
-                                  return Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 20.0, left: 20.0),
-                                    child: InkWell(
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            CustomPageRoute(
-                                                child: DetailsPage(
-                                              id: controller.newList[index].id
-                                                  .toString(),
-                                              imagePath: controller
-                                                  .newList[index].image,
-                                              name: controller
-                                                  .newList[index].name,
-                                              nameCategres: controller
-                                                  .newList[index].nameCategory,
-                                            )));
-                                      },
-                                      child: Column(
-                                        children: [
-                                          Container(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(20))),
+                                          width: screenUtil.screenWidth * .45,
+                                          height: screenUtil.screenHeight * .08,
+                                          padding: EdgeInsets.all(10),
+                                          child: Shimmer.fromColors(
+                                            highlightColor: Colors.transparent,
+                                            baseColor: Colors.grey[300]!,
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  color: AppTheme.primaryColor,
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(20))),
                                               width:
                                                   screenUtil.screenWidth * .4,
                                               height:
-                                                  screenUtil.screenHeight * .17,
-                                              child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(12),
-                                                  child: FadeInImage.assetNetwork(
-                                                    placeholder:
-                                                    'assets/images/loading.png',
-                                                    image: controller.newList[index].image,
-                                                    fit: BoxFit.cover,
-                                                    width: double.infinity,
-                                                    imageErrorBuilder: (context,
-                                                        url, error) =>
-                                                        Center(
-                                                            child:
-                                                            Shimmer.fromColors(
-                                                              highlightColor: Colors.white,
-                                                              baseColor: Colors.grey[300]!,
-                                                              child: Container(
-                                                                  color: AppTheme.primaryColor),
-                                                            )),
-                                                    fadeInCurve: Curves.bounceIn,
-                                                  )
-
-                                              )),
-                                          Text(
-                                            "${controller.newList[index].name}",
-                                            style: AppTheme.textTheme.bodyText2,
-                                          )
-                                        ],
-                                      ),
+                                                  screenUtil.screenHeight * .15,
+                                            ),
+                                          ),
+                                        );
+                                      },
                                     ),
-                                  );
-                                }));
+                                  )
+                                : ListView.builder(
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: 5,
+                                    itemBuilder: ((context, index) {
+                                      return Padding(
+                                        padding: const EdgeInsets.only(
+                                            right: 20.0, left: 20.0),
+                                        child: InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                CustomPageRoute(
+                                                    child: DetailsPage(
+                                                  id: controller
+                                                      .newList[index].id
+                                                      .toString(),
+                                                  imagePath: controller
+                                                      .newList[index].image,
+                                                  name: controller
+                                                      .newList[index].name,
+                                                  nameCategres: controller
+                                                      .newList[index]
+                                                      .nameCategory,
+                                                )));
+                                          },
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                  width:
+                                                      screenUtil.screenWidth *
+                                                          .4,
+                                                  height:
+                                                      screenUtil.screenHeight *
+                                                          .17,
+                                                  child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12),
+                                                      child: FadeInImage
+                                                          .assetNetwork(
+                                                        placeholder:
+                                                            'assets/images/loading.png',
+                                                        image: controller
+                                                            .newList[index]
+                                                            .image,
+                                                        fit: BoxFit.cover,
+                                                        width: double.infinity,
+                                                        imageErrorBuilder: (context,
+                                                                url, error) =>
+                                                            Center(
+                                                                child: Shimmer
+                                                                    .fromColors(
+                                                          highlightColor:
+                                                              Colors.white,
+                                                          baseColor:
+                                                              Colors.grey[300]!,
+                                                          child: Container(
+                                                              color: AppTheme
+                                                                  .primaryColor),
+                                                        )),
+                                                        fadeInCurve:
+                                                            Curves.bounceIn,
+                                                      ))),
+                                              Text(
+                                                "${controller.newList[index].name}",
+                                                style: AppTheme
+                                                    .textTheme.bodyText2,
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    }));
                           },
                         )),
                   ],
