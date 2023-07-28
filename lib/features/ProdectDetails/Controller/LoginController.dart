@@ -1,6 +1,7 @@
 import 'package:get_storage/get_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shehop_flowers/core/app_theme.dart';
+import 'package:shehop_flowers/features/Orders/data/model/OrderMode.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/tap_bounce_container.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -8,15 +9,20 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/util/Firebase_Messaging_Controller.dart';
 import '../../../core/util/ScreenUtil.dart';
 import '../../../core/widgets/CustomPageRoute.dart';
 
+import '../../Orders/Controller/OrderController.dart';
 import '../../Orders/presintation/Pages/OrdersPage.dart';
 import '../presintation/Widgets/DoneWidget.dart';
 import '../presintation/Widgets/OtpInpouts.dart';
 
 
 class LoginController extends GetxController {
+  final orderController = Get.put(OrderController());
+  final firebase_Messaging_Controller = Get.put(Firebase_Messaging_Controller());
+
 
   var authState = ''.obs;
   String verificationID = '';
@@ -176,7 +182,7 @@ class LoginController extends GetxController {
               child: DoneWidget()),
         );
       },);
-
+     // orderController.send_Order(OrderModel(Date_Order: Date_Order, nameCategres: nameCategres, typeOrder: typeOrder, count_order: count_order, id: id, name: name, imgurl: imgurl, note: note, Order_Status: Order_Status, OrderN: OrderN, phoneNumber: phoneNumber, token: firebase_Messaging_Controller.initNotifications().toString()));
       await Future.delayed(
            Duration(seconds: 5));
       await Navigator.pushReplacement(

@@ -75,6 +75,27 @@ update();
 
     );
   }
+  send_Order(OrderModel orderModel){
+    var userref =
+    FirebaseFirestore.instance.collection("قائمه الطلبات");
+    userref.add(
+      {
+        'count_order':orderModel.count_order,
+        'phoneNumber':orderModel.phoneNumber,
+        'name':orderModel.name,
+        'Date_Order':orderModel.Date_Order,
+        'OrderN':orderModel.OrderN,
+        'note':orderModel.note,
+        'Order_Status':orderModel.Order_Status,
+        'imgurl':orderModel.imgurl,
+        'id':orderModel.id,
+        'nameCategres':orderModel.nameCategres,
+        'token':orderModel.token,
+        'typeOrder':orderModel.typeOrder,
+
+  }
+    );
+  }
   @override
   void onInit() {
     // TODO: implement onInit

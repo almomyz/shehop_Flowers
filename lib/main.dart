@@ -9,9 +9,12 @@ import 'package:shehop_flowers/core/app_theme.dart';
 import 'package:shehop_flowers/features/Categories/presintation/pages/Categories_Page.dart';
 import 'package:shehop_flowers/features/Prodects/presintation/pages/ProdectPage.dart';
 
+import 'core/util/Firebase_Messaging_Controller.dart';
 import 'features/Categories/Controller/CategoriesController.dart';
 
+import 'features/Onboarding/Splach_screen.dart';
 import 'features/Orders/Controller/OrderController.dart';
+import 'features/Orders/data/model/OrderMode.dart';
 import 'features/ProdectDetails/Controller/ProdectDetailsController.dart';
 import 'features/Prodects/Controller/ProdectController.dart';
 import 'features/onboarding/introduction_screen.dart';
@@ -21,6 +24,7 @@ final loginController =     Get.put(ProdectDetailsController());
 final orderController =     Get.put(OrderController());
 final CategriesController = Get.put(CategoriesController());
 final prodectController = Get.put(ProdectController());
+final firebase_Messaging_Controller = Get.put(Firebase_Messaging_Controller());
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -58,22 +62,28 @@ class _MyAppState extends State<MyApp> {
         // is not restarted.
         primarySwatch: AppTheme.primarySwatch,
       ),
-      home:  show
-           ? IntroScreen()
-           :  Categories_Page(),
+        home:  Splach_screen(),
     );
   }
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-  var  userref = FirebaseFirestore.instance
-        .collection("NEWS")
-        .orderBy("entery_date", descending: true);
+  // var  userref = FirebaseFirestore.instance
+  //       .collection("NEWS")
+  //       .orderBy("entery_date", descending: true);
+  //
+  // print("----------------------------------&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+  // print(userref);
+  //   print("----------------------------------&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+   // masingController.initNotifications();
 
-  print("----------------------------------&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-  print(userref);
-    print("----------------------------------&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+    //send();
+  }
+
+  send()async{
+    String? dd= await firebase_Messaging_Controller.initNotifications();
+    orderController.send_Order(OrderModel(Date_Order: DateTime.now(), nameCategres: 'nameCategres', typeOrder: '1', count_order: '3', id: '25', name: 'adddd', imgurl: 'dasdasdas', note: 'dsadasdas', Order_Status: 'dsankdnksa', OrderN: '23232323', phoneNumber: '776661971', token: dd));
 
   }
 }

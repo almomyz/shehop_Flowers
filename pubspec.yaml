@@ -64,6 +64,7 @@ dependencies:
   cloud_firestore: ^4.3.1
   favorite_button: ^0.0.4
   get_storage: ^2.1.1
+  firebase_messaging: ^14.6.5
 
 
 
